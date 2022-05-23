@@ -27,6 +27,7 @@ app "nullginx" {
   deploy {
     use "kubernetes" {
       probe_path = "/"
+      image_secret = var.regcred_secret
     }
   }
 
@@ -48,11 +49,11 @@ runner {
   }
 }
 
-# variable "regcred_secret" {
-#   default     = "regcred"
-#   type        = string
-#   description = "The existing secret name inside Kubernetes for authenticating to the container registry"
-# }
+variable "regcred_secret" {
+  default     = "regcred"
+  type        = string
+  description = "The existing secret name inside Kubernetes for authenticating to the container registry"
+}
 
 variable "port" {
   default     = 80
