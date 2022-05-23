@@ -13,12 +13,12 @@ app "nullginx" {
     }
     registry {
       use "docker" {
-        # image = "catsby.jfrog.io/shrl-docker/nullginx"
-        image = "localhost:5000/nullginx"
+        image = "catsby.jfrog.io/shrl-docker/nullginx"
+        # image = "localhost:5000/nullginx"
         tag   = "latest"
 
-        # username = var.registry_username
-        # password = var.registry_password
+        username = var.registry_username
+        password = var.registry_password
         local = false
       }
     }
@@ -60,25 +60,25 @@ variable "port" {
   description = "port the service is listening on"
 }
 
-# variable "registry_username" {
-#   default = dynamic("vault", {
-#     path = "secret/data/jfrogcreds"
-#     key = "/data/username"
-#   })
-#   type        = string
-#   sensitive   = true
-#   description = "username for container registry"
-# }
+variable "registry_username" {
+  default = dynamic("vault", {
+    path = "secret/data/jfrogcreds"
+    key = "/data/username"
+  })
+  type        = string
+  sensitive   = true
+  description = "username for container registry"
+}
 
-# variable "registry_password" {
-#   default = dynamic("vault", {
-#     path = "secret/data/jfrogcreds"
-#     key = "/data/password"
-#   })
-#   type        = string
-#   sensitive   = true
-#   description = "password for registry" // DO NOT COMMIT YOUR PASSWORD TO GIT
-# }
+variable "registry_password" {
+  default = dynamic("vault", {
+    path = "secret/data/jfrogcreds"
+    key = "/data/password"
+  })
+  type        = string
+  sensitive   = true
+  description = "password for registry" // DO NOT COMMIT YOUR PASSWORD TO GIT
+}
 
 # variable "mongo_url" {
 #   default = dynamic("terraform-cloud", {
