@@ -11,16 +11,17 @@ app "nullginx" {
       image="nginx"
       tag = "latest"
     }
-    # registry {
-    #   use "docker" {
-    #     image = "catsby.jfrog.io/shrl-docker/nullginx"
-    #     tag   = "latest"
+    registry {
+      use "docker" {
+        # image = "catsby.jfrog.io/shrl-docker/nullginx"
+        image = "localhost:5000/nullginx"
+        tag   = "latest"
 
-    #     username = var.registry_username
-    #     password = var.registry_password
-    #     local = false
-    #   }
-    # }
+        # username = var.registry_username
+        # password = var.registry_password
+        local = false
+      }
+    }
   }
 
   deploy {
@@ -33,7 +34,8 @@ app "nullginx" {
     use "kubernetes" {
       // Sets up a load balancer to access released application
       load_balancer = true
-      port          = var.port
+      # port          = var.port
+      port = 80
     }
   }
 }
@@ -53,7 +55,7 @@ runner {
 # }
 
 variable "port" {
-  default     = 8080
+  default     = 80
   type        = number
   description = "port the service is listening on"
 }
