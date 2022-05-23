@@ -7,7 +7,10 @@ app "nullginx" {
   }
 
   build {
-    use "docker-pull" {}
+    use "docker-pull" {
+      image="nginx"
+      tag = "latest"
+    }
     # registry {
     #   use "docker" {
     #     image = "catsby.jfrog.io/shrl-docker/nullginx"
