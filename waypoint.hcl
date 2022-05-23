@@ -13,7 +13,7 @@ app "nullginx" {
     }
     registry {
       use "docker" {
-        image = "catsby.jfrog.io/nullginx-docker/nullginx"
+        image = "catsby.jfrog.io/shrl-docker/nullginx"
         # image = "localhost:5000/nullginx"
         tag   = "latest"
 
